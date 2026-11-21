@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Light Up Eagle Trace · Tree Wrapping Sign-Up</title>
+<meta name="description" content="Sign up to get help wrapping your trees in lights, or volunteer to help a neighbor. Eagle Trace, Greenwood IN.">
+<meta property="og:title" content="Light Up Eagle Trace 🎄">
+<meta property="og:description" content="Need help wrapping your trees in lights, or want to help a neighbor? Sign up here.">
+<meta property="og:url" content="https://eagletracelights.com/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1f2e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎄</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0f1f2e; --pine:#1e3d32; --pine-2:#2b5444; --cream:#fbf7ef; --ink:#1d2a26;
+    --muted:#5f6d67; --line:#e4ddcf; --gold:#f2b544; --red:#d9483b; --green:#3fa66b; --blue:#4a8fe0;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:Inter,system-ui,-apple-system,sans-serif; color:var(--ink);
+    background:radial-gradient(1200px 600px at 50% -10%, #1d3a52 0%, var(--night) 60%) fixed;
+    min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  /* string of lights */
+  .lights{position:relative;height:70px;overflow:hidden}
+  .lights svg{position:absolute;inset:0;width:100%;height:100%}
+  .bulb{position:absolute;top:0;width:14px;height:20px;border-radius:50% 50% 45% 45%;transform-origin:50% -8px;animation:twinkle 2.6s ease-in-out infinite}
+  .bulb::before{content:"";position:absolute;left:4px;top:-5px;width:6px;height:6px;background:#3b4a44;border-radius:2px}
+  @keyframes twinkle{0%,100%{opacity:1;filter:brightness(1.1)}50%{opacity:.55;filter:brightness(.8)}}
+  @media (prefers-reduced-motion:reduce){.bulb{animation:none}}
+
+  header{text-align:center;color:var(--cream);padding:4px 22px 28px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(32px,8vw,52px);line-height:1.05;margin:10px 0 12px}
+  header p{max-width:520px;margin:0 auto;color:#c9d4cf;font-size:16px;line-height:1.55}
+
+  main{max-width:640px;margin:0 auto;padding:0 16px 60px}
+  .card{background:var(--cream);border-radius:var(--radius);padding:26px 22px;box-shadow:0 20px 60px rgba(0,0,0,.35);margin-bottom:18px}
+  h2{font-family:Fraunces,Georgia,serif;font-size:22px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 18px;line-height:1.5}
+
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .path{position:relative}
+  .path input{position:absolute;opacity:0;pointer-events:none}
+  .path label{display:block;height:100%;cursor:pointer;border:2px solid var(--line);border-radius:16px;padding:18px 14px;background:#fff;transition:.18s}
+  .path .ic{font-size:30px;line-height:1}
+  .path strong{display:block;font-size:16px;margin:10px 0 4px}
+  .path span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
+  .path input:checked + label{border-color:var(--pine-2);background:#eef5f0;box-shadow:0 0 0 4px rgba(43,84,68,.12)}
+  .path input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+  @media (max-width:420px){.paths{grid-template-columns:1fr}}
+
+  .field{margin-bottom:18px}
+  .field > .lbl{display:block;font-weight:600;font-size:15px;margin-bottom:8px}
+  .req{color:var(--red)}
+  .hint{font-size:13px;color:var(--muted);margin:-4px 0 8px}
+  input[type=text],input[type=tel],input[type=email],textarea{
+    width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);transition:.15s}
+  textarea{min-height:90px;resize:vertical}
+  input:focus,textarea:focus{outline:none;border-color:var(--pine-2);box-shadow:0 0 0 4px rgba(43,84,68,.12)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:480px){.row2{grid-template-columns:1fr}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip input{position:absolute;opacity:0;pointer-events:none}
+  .chip label{display:inline-block;cursor:pointer;padding:10px 15px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-size:15px;transition:.15s;user-select:none}
+  .chip input:checked + label{background:var(--pine);border-color:var(--pine);color:#fff}
+  .chip input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+
+  .notice{display:flex;gap:12px;background:#fff6e2;border:1.5px solid #f1d9a2;border-radius:14px;padding:14px;margin-bottom:18px;font-size:14px;line-height:1.5}
+  .notice b{display:block;margin-bottom:2px}
+  .ack{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;font-size:15px;line-height:1.45}
+  .ack input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--pine);flex:none}
+
+  .hidden{display:none}
+  .err{color:var(--red);font-size:13px;margin-top:6px;display:none}
+  .field.bad .err{display:block}
+  .field.bad input[type=text],.field.bad input[type=tel],.field.bad textarea,.field.bad .ack{border-color:var(--red)}
+
+  button.submit{width:100%;font:inherit;font-weight:600;font-size:17px;padding:16px;border:0;border-radius:14px;cursor:pointer;color:#1b1405;
+    background:linear-gradient(180deg,#f7c75f,#eaa52c);box-shadow:0 8px 24px rgba(234,165,44,.35);transition:.15s}
+  button.submit:hover{transform:translateY(-1px)}
+  button.submit:disabled{opacity:.6;cursor:wait;transform:none}
+  .privacy{text-align:center;color:#9fb0a9;font-size:13px;margin-top:14px}
+  .hp{position:absolute;left:-9999px}
+
+  .done{text-align:center;padding:40px 22px}
+  .done .big{font-size:54px}
+  .done h2{font-size:28px;margin:10px 0 8px}
+  footer{text-align:center;color:#7f918a;font-size:12px;padding:0 16px 30px}
+</style>
+</head>
+<body>
+
+<div class="lights" aria-hidden="true" id="lights">
+  <svg viewBox="0 0 1000 70" preserveAspectRatio="none"><path d="M0,8 Q125,48 250,10 T500,10 T750,10 T1000,8" stroke="#3b4a44" stroke-width="2" fill="none"/></svg>
+</div>
+
+<header>
+  <div class="eyebrow">Eagle Trace · Holiday 2026</div>
+  <h1>Light Up<br>Eagle Trace</h1>
+  <p>Trees wrapped in lights are one of the things that make Eagle Trace special. If you’d like your trees wrapped but can’t do it yourself, neighbors are happy to help. If you can lend a hand, sign up to volunteer.</p>
+</header>
+
+<main>
+  <form id="f" novalidate>
+    <div class="card">
+      <h2>How would you like to take part?</h2>
+      <p class="sub">Pick one and we’ll show the right questions.</p>
+      <div class="paths field" id="f-type">
+        <div class="path">
+          <input type="radio" name="type" id="t-help" value="help">
+          <label for="t-help"><div class="ic">🎄</div><strong>I’d love some help</strong><span>Wrap my trees — I’ll provide the lights.</span></label>
+        </div>
+        <div class="path">
+          <input type="radio" name="type" id="t-vol" value="volunteer">
+          <label for="t-vol"><div class="ic">🪜</div><strong>I’ll help wrap</strong><span>Count me in to help a neighbor.</span></label>
+        </div>
+        <div class="err" style="grid-column:1/-1">Please choose one.</div>
+      </div>
+    </div>
+
+    <div class="card hidden" id="contact">
+      <h2>Your info</h2>
+      <p class="sub">So an organizer can reach out to coordinate.</p>
+      <div class="field" data-req>
+        <label class="lbl" for="name">Name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" autocomplete="name">
+        <div class="err">Please enter your name.</div>
+      </div>
+      <div class="field" data-req>
+        <label class="lbl" for="address">Street address <span class="req">*</span></label>
+        <input type="text" id="address" name="address" autocomplete="street-address">
+        <div class="err">Please enter your address.</div>
+      </div>
+      <div class="row2">
+        <div class="field" data-req>
+          <label class="lbl" for="phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+          <div class="err">Please enter a phone number.</div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+      </div>
+    </div>
+
+    <!-- NEEDS HELP -->
+    <div class="card hidden" id="sec-help">
+      <h2>About your trees</h2>
+      <p class="sub">So we send the right number of helpers.</p>
+
+      <div class="notice"><div>💡</div><div><b>Homeowners provide the supplies</b>Please have your lights, extension cords, and a power source (outdoor outlet, timer, etc.) ready. Volunteers do the wrapping.</div></div>
+
+      <div class="field" data-group="trees">
+        <span class="lbl">How many trees? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:trees:1|2|3|4 or more"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field" data-group="tallest">
+        <span class="lbl">About how tall is the tallest? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:tallest:Under 8 ft|8–15 ft|Over 15 ft|Not sure"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field" data-group="times">
+        <span class="lbl">What times work best? <span class="req">*</span></span>
+        <p class="hint">Pick any that work.</p>
+        <div class="chips" data-chips="checkbox:times:Weekday evenings|Saturday|Sunday afternoon|Anytime"></div>
+        <div class="err">Please pick at least one.</div>
+      </div>
+      <div class="field" data-group="notHome">
+        <span class="lbl">Okay if volunteers wrap while you’re not home? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:notHome:Yes|No, I’d like to be home"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field" data-group="supplies">
+        <label class="ack"><input type="checkbox" name="supplies" value="Yes"><span><b>I’ll provide the lights, extension cords, and a working outlet/power source.</b> <span class="req">*</span></span></label>
+        <div class="err">Please confirm so volunteers can get right to work.</div>
+      </div>
+      <div class="field" data-req>
+        <label class="lbl" for="plug">Where will the lights plug in, and where will supplies be? <span class="req">*</span></label>
+        <input type="text" id="plug" name="plug" placeholder="e.g., Porch outlet; bin of lights by the garage">
+        <div class="err">Please tell volunteers where to find things.</div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="helpNotes">Anything else?</label>
+        <textarea id="helpNotes" name="helpNotes" placeholder="Gate, pets, light colors, a specific tree…"></textarea>
+      </div>
+    </div>
+
+    <!-- VOLUNTEER -->
+    <div class="card hidden" id="sec-vol">
+      <h2>Thanks for helping! 🙌</h2>
+      <p class="sub">Even an hour or two makes a big difference.</p>
+
+      <div class="field" data-group="avail">
+        <span class="lbl">When are you available? <span class="req">*</span></span>
+        <p class="hint">Pick any that work.</p>
+        <div class="chips" data-chips="checkbox:avail:Weekday evenings|Saturday|Sunday afternoon|Anytime"></div>
+        <div class="err">Please pick at least one.</div>
+      </div>
+      <div class="field" data-group="homes">
+        <span class="lbl">How many homes could you help with? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:homes:1|2–3|4 or more"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field" data-group="people">
+        <span class="lbl">How many people (including you)? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:people:Just me|2|3|4 or more"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field" data-group="ladders">
+        <span class="lbl">Can you bring a ladder?</span>
+        <div class="chips" data-chips="checkbox:ladders:Step ladder|Tall / extension ladder"></div>
+      </div>
+      <div class="field" data-group="ladderOk">
+        <span class="lbl">Comfortable on a ladder? <span class="req">*</span></span>
+        <div class="chips" data-chips="radio:ladderOk:Yes|Ground level only"></div>
+        <div class="err">Please pick one.</div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="volNotes">Anything else?</label>
+        <textarea id="volNotes" name="volNotes"></textarea>
+      </div>
+    </div>
+
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <div id="submitWrap" class="hidden">
+      <button class="submit" type="submit" id="btn">Sign me up ✨</button>
+      <p class="privacy">🔒 Private. Only HOA organizers can see who signs up.</p>
+    </div>
+  </form>
+
+  <div class="card done hidden" id="done">
+    <div class="big">🎄</div>
+    <h2>You’re signed up!</h2>
+    <p class="sub" id="doneMsg">An organizer will reach out to coordinate a time.</p>
+  </div>
+</main>
+<footer>Eagle Trace HOA · Greenwood, Indiana</footer>
+
+<script>
+  // If hosting this page somewhere other than Apps Script (e.g. GitHub Pages),
+  // paste the web app /exec URL here:
+  var ENDPOINT = 'PASTE_EXEC_URL_HERE';
+
+  // Lights
+  (function(){
+    var colors=['var(--red)','var(--gold)','var(--green)','var(--blue)','#e46fb0'];
+    var wrap=document.getElementById('lights'), n=Math.max(10,Math.round(window.innerWidth/48));
+    for(var i=0;i<n;i++){
+      var x=(i+.5)/n, sag=Math.sin((x*4%1)*Math.PI)*18+4; // follow the wire's swags
+      var b=document.createElement('div'); b.className='bulb';
+      var c=colors[i%colors.length];
+      b.style.left='calc('+(x*100)+'% - 7px)'; b.style.top=(sag+6)+'px';
+      b.style.background=c; b.style.boxShadow='0 0 14px 4px '+c;
+      b.style.animationDelay=(i*0.37%2.6)+'s'; b.style.transform='rotate('+((i%2?1:-1)*8)+'deg)';
+      wrap.appendChild(b);
+    }
+  })();
+
+  // Build chips
+  document.querySelectorAll('[data-chips]').forEach(function(box){
+    var p=box.getAttribute('data-chips').split(':'), type=p[0], name=p[1], opts=p.slice(2).join(':').split('|');
+    opts.forEach(function(o,i){
+      var id=name+'-'+i, s=document.createElement('span'); s.className='chip';
+      s.innerHTML='<input type="'+type+'" name="'+name+'" id="'+id+'"><label for="'+id+'"></label>';
+      s.querySelector('input').value=o; s.querySelector('label').textContent=o;
+      box.appendChild(s);
+    });
+  });
+
+  var f=document.getElementById('f'), type=null;
+  function show(id,on){document.getElementById(id).classList.toggle('hidden',!on)}
+  f.querySelectorAll('input[name=type]').forEach(function(r){
+    r.addEventListener('change',function(){
+      type=r.value;
+      show('contact',true); show('submitWrap',true);
+      show('sec-help',type==='help'); show('sec-vol',type==='volunteer');
+      document.getElementById('f-type').classList.remove('bad');
+      document.getElementById('btn').textContent = type==='help' ? 'Request help ✨' : 'Sign me up to help ✨';
+    });
+  });
+  f.addEventListener('input',function(e){var fl=e.target.closest('.field'); if(fl) fl.classList.remove('bad');});
+  f.addEventListener('change',function(e){var fl=e.target.closest('.field'); if(fl) fl.classList.remove('bad');});
+
+  function vals(name){return Array.prototype.map.call(f.querySelectorAll('input[name="'+name+'"]:checked'),function(i){return i.value})}
+  function val(id){return (document.getElementById(id).value||'').trim()}
+
+  function validate(){
+    var bad=[];
+    if(!type){bad.push(document.getElementById('f-type'))}
+    else{
+      var scope=[document.getElementById('contact'),document.getElementById(type==='help'?'sec-help':'sec-vol')];
+      scope.forEach(function(sec){
+        sec.querySelectorAll('.field[data-req]').forEach(function(fl){
+          var inp=fl.querySelector('input,textarea'); if(!inp.value.trim()) bad.push(fl);
+        });
+        sec.querySelectorAll('.field[data-group]').forEach(function(fl){
+          if(!fl.querySelector('.req')) return;
+          if(!vals(fl.getAttribute('data-group')).length) bad.push(fl);
+        });
+      });
+    }
+    bad.forEach(function(b){b.classList.add('bad')});
+    if(bad.length){bad[0].scrollIntoView({behavior:'smooth',block:'center'})}
+    return !bad.length;
+  }
+
+  function payload(){
+    var d={type:type,name:val('name'),address:val('address'),phone:val('phone'),email:val('email'),website:f.website.value};
+    if(type==='help'){
+      d.trees=vals('trees')[0]; d.tallest=vals('tallest')[0]; d.times=vals('times').join(', ');
+      d.notHome=vals('notHome')[0]; d.supplies=vals('supplies').length?'Yes':''; d.plug=val('plug'); d.notes=val('helpNotes');
+    }else{
+      d.avail=vals('avail').join(', '); d.homes=vals('homes')[0]; d.people=vals('people')[0];
+      d.ladders=vals('ladders').join(', '); d.ladderOk=vals('ladderOk')[0]; d.notes=val('volNotes');
+    }
+    return d;
+  }
+
+  function finished(){
+    f.classList.add('hidden'); show('done',true);
+    document.getElementById('doneMsg').textContent = type==='help'
+      ? 'An organizer will reach out to schedule a time. Have your lights and cords ready!'
+      : 'Thank you! An organizer will reach out with a neighbor to help.';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function failed(){
+    var b=document.getElementById('btn'); b.disabled=false; b.textContent='Try again';
+    alert('Sorry, something went wrong. Please try again in a moment.');
+  }
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!validate()) return;
+    var b=document.getElementById('btn'); b.disabled=true; b.textContent='Sending…';
+    var d=payload();
+    if(window.google && google.script && google.script.run){
+      google.script.run.withSuccessHandler(finished).withFailureHandler(failed).saveSignup(d);
+    }else if(/^https:\/\/script\.google\.com\//.test(ENDPOINT)){
+      fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
+        .then(finished).catch(failed);
+    }else{ failed(); }
+  });
+</script>
+</body>
+</html>
