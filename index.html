@@ -4,13 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Light Up Eagle Trace · Tree Wrapping Sign-Up</title>
-<meta name="description" content="Sign up to get help wrapping your trees in lights, or volunteer to help a neighbor. Eagle Trace, Greenwood IN.">
-<meta property="og:title" content="Light Up Eagle Trace 🎄">
-<meta property="og:description" content="Need help wrapping your trees in lights, or want to help a neighbor? Sign up here.">
-<meta property="og:url" content="https://eagletracelights.com/">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0f1f2e">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎄</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -245,7 +238,7 @@
 <script>
   // If hosting this page somewhere other than Apps Script (e.g. GitHub Pages),
   // paste the web app /exec URL here:
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwrBc4OdbDpiKeUGldB6By22sYpxHH_OMQ_XNx_8B5fklMi_0we3pxGXGIaAehuWK5b/exec';
+  var ENDPOINT = '';
 
   // Lights
   (function(){
@@ -341,7 +334,7 @@
     var d=payload();
     if(window.google && google.script && google.script.run){
       google.script.run.withSuccessHandler(finished).withFailureHandler(failed).saveSignup(d);
-    }else if(/^https:\/\/script\.google\.com\//.test(ENDPOINT)){
+    }else if(ENDPOINT){
       fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
         .then(finished).catch(failed);
     }else{ failed(); }
