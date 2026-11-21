@@ -164,11 +164,6 @@
         <div class="chips" data-chips="radio:trees:1|2|3|4 or more"></div>
         <div class="err">Please pick one.</div>
       </div>
-      <div class="field" data-group="tallest">
-        <span class="lbl">About how tall is the tallest? <span class="req">*</span></span>
-        <div class="chips" data-chips="radio:tallest:Under 8 ft|8–15 ft|Over 15 ft|Not sure"></div>
-        <div class="err">Please pick one.</div>
-      </div>
       <div class="field" data-group="times">
         <span class="lbl">What times work best? <span class="req">*</span></span>
         <p class="hint">Pick any that work.</p>
@@ -181,7 +176,7 @@
         <div class="err">Please pick one.</div>
       </div>
       <div class="field" data-group="supplies">
-        <label class="ack"><input type="checkbox" name="supplies" value="Yes"><span><b>I’ll provide the lights, extension cords, and a working outlet/power source.</b> <span class="req">*</span></span></label>
+        <label class="ack"><input type="checkbox" name="supplies" value="Yes"><span><b>I acknowledge I will provide the lights and extension cords.</b> <span class="req">*</span></span></label>
         <div class="err">Please confirm so volunteers can get right to work.</div>
       </div>
       <div class="field" data-req>
@@ -318,7 +313,7 @@
   function payload(){
     var d={type:type,name:val('name'),address:val('address'),phone:val('phone'),email:val('email'),website:f.website.value};
     if(type==='help'){
-      d.trees=vals('trees')[0]; d.tallest=vals('tallest')[0]; d.times=vals('times').join(', ');
+      d.trees=vals('trees')[0]; d.times=vals('times').join(', ');
       d.notHome=vals('notHome')[0]; d.supplies=vals('supplies').length?'Yes':''; d.plug=val('plug'); d.notes=val('helpNotes');
     }else{
       d.avail=vals('avail').join(', '); d.homes=vals('homes')[0]; d.people=vals('people')[0];
